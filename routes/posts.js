@@ -3,7 +3,7 @@ const server = express.Router();
 const db = require('../data/db');
 const commentsRouter = require('./comments');
 
-server.use('/comments', commentsRouter);
+server.use('/:id/comments', commentsRouter);
 
 /**
  * POST /api/posts
