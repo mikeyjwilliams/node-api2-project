@@ -84,4 +84,39 @@ server.delete('/:id', (req, res) => {
 		});
 });
 
+server.put('/:id', (req, res) => {
+	const { id } = req.params;
+	const { title, contents } = req.body;
+
+	if (!title) {
+		return res.status(400).json({ message: 'please provide title for post' });
+	}
+	if (!contents) {
+		return res
+			.status(400)
+			.json({ message: 'please provide contents for post' });
+	}
+	const updatePost = {
+		title: title,
+		contents: contents
+	};
+	db.update(id, updatePost)
+		.then((update) => {
+			if (update) {
+				res.status(200).json(update);
+			} else {
+				res
+					.status(404)
+					.json({ message: 'The post with the specified ID does not exist.' });
+			}
+		})
+		.catch((error) => {
+			res
+				.status(500)
+				.json({
+					errorMessage: 'Please provide title and contents for the post.'
+				});
+		});
+});
+
 module.exports = server;
