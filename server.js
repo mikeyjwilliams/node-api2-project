@@ -4,4 +4,8 @@ const server = express();
 
 server.use(express.json());
 
+server.get('/', (req, res) => {
+	res.send('posts is up');
+});
+
 module.exports = server;
