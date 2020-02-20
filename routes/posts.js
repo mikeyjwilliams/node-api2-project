@@ -19,7 +19,7 @@ server.post('/', (req, res) => {
   if (!contents) {
     return res
       .status(400)
-      .json({ error: 'Please provide contents for the post.' });
+      .json({ errorMessage: 'Please provide contents for the post.' });
   }
   const data = {
     title: title,
